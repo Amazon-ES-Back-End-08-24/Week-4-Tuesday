@@ -46,4 +46,6 @@ public class User {
     public void setUserRole(Role userRole) {
         this.userRole = userRole;
     }
+
+    // equals & hashcode
 }
