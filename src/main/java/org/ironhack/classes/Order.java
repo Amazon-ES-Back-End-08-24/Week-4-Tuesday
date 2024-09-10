@@ -51,7 +51,17 @@ public class Order {
     }
 
     public void updateStatus(OrderStatus status) {
+
+        if (isSameStatus(status)){
+            System.out.println();
+        }
+
         this.status = status;
+    }
+
+    private boolean isSameStatus(OrderStatus status) {
+        boolean isSameStatus = status == this.status;
+        return isSameStatus;
     }
 
     public void printOrderDetails() {

@@ -2,6 +2,7 @@ package org.ironhack;
 
 import org.ironhack.classes.Order;
 import org.ironhack.classes.Role;
+import org.ironhack.classes.ScoreManager;
 import org.ironhack.enums.Day;
 import org.ironhack.enums.OrderStatus;
 import org.ironhack.enums.User;
@@ -14,6 +15,42 @@ public class App {
         // enumExample();
         // enumExercise();
 
+        // hashMapExample();
+        // hashMapExercise();
+    }
+
+    private static void enumExample() {
+        Day today = Day.SATURDAY;
+
+        if (today == Day.TUESDAY || today == Day.SATURDAY) {
+            System.out.println("We have back-end class today!");
+        } else {
+            System.out.println("Practice some Java");
+        }
+
+        User user = new User(91, "Lorenzo", "password", Role.ADMIN);
+        System.out.println(user.getUserRole());
+    }
+
+    private static void enumExercise() {
+        Order order = new Order(1, "Iphone", 1200.99);
+        Order order1 = new Order(2, "Laptop", 1500);
+        Order order2 = new Order(3, "Hat", 17.13);
+
+        order.printOrderDetails();
+        order1.printOrderDetails();
+        order2.printOrderDetails();
+
+        order.updateStatus(OrderStatus.CANCELLED);
+        order1.updateStatus(OrderStatus.SHIPPED);
+        order2.updateStatus(OrderStatus.PROCESSING);
+
+        order.printOrderDetails();
+        order1.printOrderDetails();
+        order2.printOrderDetails();
+    }
+
+    private static void hashMapExample() {
         // Hashmaps almacena pares clave-valor -> la clave debe ser ÚNICA - key-value
 
         HashMap<String, Integer> scores = new HashMap<>();
@@ -39,34 +76,22 @@ public class App {
         System.out.println(scores.keySet());
     }
 
-    private static void enumExercise() {
-        Order order = new Order(1, "Iphone", 1200.99);
-        Order order1 = new Order(2, "Laptop", 1500);
-        Order order2 = new Order(3, "Hat", 17.13);
+    private static void hashMapExercise() {
+        ScoreManager scoreManager = new ScoreManager();
 
-        order.printOrderDetails();
-        order1.printOrderDetails();
-        order2.printOrderDetails();
+        scoreManager.addPlayer("Alice", 100);
+        scoreManager.addPlayer("Alice", 100); // duplicado para tirar error
+        scoreManager.addPlayer("Bob", 150);
+        scoreManager.addPlayer("Charlie", 200);
 
-        order.updateStatus(OrderStatus.CANCELLED);
-        order1.updateStatus(OrderStatus.SHIPPED);
-        order2.updateStatus(OrderStatus.PROCESSING);
+        scoreManager.checkScore("Bob");
+        scoreManager.checkScore("Test"); // para ver el mensaje de error
 
-        order.printOrderDetails();
-        order1.printOrderDetails();
-        order2.printOrderDetails();
-    }
+        scoreManager.updateScore("Test 2", 180); // para ver el mensaje de error
+        scoreManager.updateScore("Alice", 180);
 
-    private static void enumExample() {
-        Day today = Day.SATURDAY;
+        scoreManager.checkScore("Alice");
 
-        if (today == Day.TUESDAY || today == Day.SATURDAY) {
-            System.out.println("We have back-end class today!");
-        } else {
-            System.out.println("Practice some Java");
-        }
-
-        User user = new User(91, "Lorenzo", "password", Role.ADMIN);
-        System.out.println(user.getUserRole());
+        scoreManager.printAllScores();
     }
 }
