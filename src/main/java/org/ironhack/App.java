@@ -1,13 +1,17 @@
 package org.ironhack;
 
 import org.ironhack.classes.Order;
+import org.ironhack.classes.Product;
 import org.ironhack.classes.Role;
 import org.ironhack.classes.ScoreManager;
 import org.ironhack.enums.Day;
 import org.ironhack.enums.OrderStatus;
 import org.ironhack.enums.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class App {
@@ -17,6 +21,12 @@ public class App {
 
         // hashMapExample();
         // hashMapExercise();
+
+        // equalsExample();
+        // equalsAndHashcodeExample();
+
+
+        List<String> names = new ArrayList<>();
     }
 
     private static void enumExample() {
@@ -93,5 +103,31 @@ public class App {
         scoreManager.checkScore("Alice");
 
         scoreManager.printAllScores();
+    }
+
+    private static void equalsExample() {
+        Order order = new Order(1, "Iphone", 1200.99);
+        Order order1 = new Order(1, "Iphone", 1200.99);
+
+        System.out.println(order.toString());
+        System.out.println(order1.toString());
+
+        System.out.println(order.getClass());
+        System.out.println(order.equals(order1));
+    }
+
+    private static void equalsAndHashcodeExample() {
+        Map<Product, Integer> inventory = new HashMap<>();
+
+        Product product1 = new Product("101", "Coffee Mug");
+
+        inventory.put(product1, 150);
+
+        // para verificar el funcionamiento de equals & hashcode
+        Product sameProduct = new Product("101", "Coffee Mug");
+
+        Integer productInventory = inventory.get(sameProduct);
+
+        System.out.println("Inventory count for product Id 101 Coffee Mug " + productInventory);
     }
 }

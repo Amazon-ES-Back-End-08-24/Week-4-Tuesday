@@ -2,6 +2,8 @@ package org.ironhack.classes;
 
 import org.ironhack.enums.OrderStatus;
 
+import java.util.Objects;
+
 public class Order {
     private int orderId;
     private String productName;
@@ -52,7 +54,7 @@ public class Order {
 
     public void updateStatus(OrderStatus status) {
 
-        if (isSameStatus(status)){
+        if (isSameStatus(status)) {
             System.out.println();
         }
 
@@ -70,5 +72,32 @@ public class Order {
         System.out.println("Price : " + price + " $");
         System.out.println("Current status: " + status);
         System.out.println("-------------");
+    }
+
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", status=" + status +
+                '}';
+    }
+
+    // PARA VERIFICAR EL FUNCIONAMIENTO DE EQUALS COMENTAR ESTE MÉTODO:
+    // verifica si dos objetos son iguales
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // order.equals(order); ESTO SERÁ TRUE
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return orderId == order.orderId && Double.compare(price, order.price) == 0 && Objects.equals(productName, order.productName) && status == order.status;
+    }
+
+    // int que indica en qué cubo del HashMap se almacena una clave
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, productName, price, status);
     }
 }
